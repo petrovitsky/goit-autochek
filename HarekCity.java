@@ -3,6 +3,23 @@ package main;
 import java.util.Arrays;
 
 public class HarekCity {
+    public String[] makeCopy(String[] names){
+        System.out.println("Copied!");
+        return Arrays.copyOf(names, names.length);
+    }
+    public void printKeyboard(){
+        char[][] array = createKeyboard();
+        for (int i = 0; i < array.length ; i++) {
+            System.out.println(Arrays.toString(array[i]));
+        }
+
+    }
+    public char[][] createKeyboard(){
+
+        char[][] chars = new char[][]{{'1', '2', '3'}, {'4', '5', '6'} , {'7', '8', '9'}, {'*', '0', '#'}};
+
+        return chars;
+    }
     public String[] changeElectResultAgain(String[] results){
 
         return Arrays.copyOfRange(results, 2,5);
@@ -49,8 +66,11 @@ public class HarekCity {
     public static void main(String[] args) {
 
 
-        String[] results = new String[]{"mix", "max", "pex", "fux", "rox"};
-        String[] changedResults = new HarekCity().changeElectResultAgain(results);
-        System.out.println(Arrays.toString(changedResults));
+        String[] source = new String[] {"Hero", "Mihu"};
+        String[] copy = new HarekCity().makeCopy(source);
+
+        source[0] = "CHANGED!"; //Мы меняем исходный массив, но на копии это не отображается
+
+        System.out.println(Arrays.toString(copy));
     }
 }
