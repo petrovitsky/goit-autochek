@@ -4,6 +4,34 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SaveStarShip {
+    public boolean isHangarOk(int side1, int side2, int price) {
+        boolean result = false;
+        if ((price / (side1 * side2)) > 1000 || side1 * side2 < 1500 || ((float)Math.max(side1, side2) / Math.min(side1, side2)) > 2) {
+            return result;
+        } else {
+            return !result;
+        }
+    }
+
+    public String getMyPrizes(int ticket) {
+        String result = null;
+
+        if (ticket % 10 == 0) {
+            result = "crystall";
+        } else if (ticket % 10 == 7) {
+            result = "chip";
+        } else {
+            result = "";
+        }
+
+        if (ticket > 200) {
+            return result + " coin";
+        } else {
+            return result;
+        }
+
+    }
+
     public void calculateMaxPower() {
         Scanner scanner = new Scanner(System.in);
         int max = 0;
@@ -31,6 +59,7 @@ public class SaveStarShip {
         scanner.close();
         System.out.println(max);
     }
+
     public int calculateNeededFuel(int distance) {
         return distance <= 20 ? 1000 : (distance - 20) * 5 + 1000;
     }
@@ -96,5 +125,11 @@ public class SaveStarShip {
         System.out.println(ship.calculateNeededFuel(25));
 
         ship.calculateMaxPower();
+
+        //Should be "crystall coin"
+        System.out.println(ship.getMyPrizes(250));
+
+        //Should be true
+        System.out.println(ship.isHangarOk(64, 133, 5005056));
     }
 }
