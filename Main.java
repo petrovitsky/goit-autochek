@@ -68,3 +68,21 @@ class MarsValueConverter {
     }
 }
 
+class TestBoolean {
+    public static void main(String[] args) {
+        boolean result = grtFalse() & getTrue();
+        System.out.println(result);
+
+    }
+    public static boolean getTrue () {
+        System.out.println("Its working getTrue");
+        return true;
+    }
+
+    public static boolean grtFalse () {
+        System.out.println("Its working getFalse");
+
+        return false;
+    }
+}
+
