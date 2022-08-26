@@ -4,6 +4,19 @@ import java.util.Arrays;
 
 
 public class UberShop {
+    public String[] mergeStocks(String[] showcaseStocks, String[] warehouseStocks){
+        String[] result = new String[showcaseStocks.length + warehouseStocks.length];
+        int index = 0;
+        for (String stock: showcaseStocks) {
+            result[index] = stock;
+            index++;
+        }
+        for (String warehouse : warehouseStocks) {
+            result[index] = warehouse;
+            index++;
+        }
+        return result;
+    }
     public int[] leavePrice9(int[] prices){
         if (prices.length == 0){
             return  new int[0];
@@ -136,9 +149,14 @@ public class UberShop {
         int toRemove = 100;
         System.out.println(Arrays.toString(shop.removePrice(prices, toRemove)));*/
 
-        //Should be [1599, 399]
+       /* //Should be [1599, 399]
         int[] prices = new int[] {399, 1599, 399, 50, 10, 10, 70};
-        System.out.println(Arrays.toString(shop.leavePrice9(prices)));
+        System.out.println(Arrays.toString(shop.leavePrice9(prices)));*/
+
+        //Final result should be ["gun", "firebow", "firegun"]
+        String[] showcaseStocks = new String[] {"gun", "firebow"};
+        String[] warehouseStocks = new String[] {"firegun"};
+        System.out.println(Arrays.toString(shop.mergeStocks(showcaseStocks, warehouseStocks)));
     }
 
 }
