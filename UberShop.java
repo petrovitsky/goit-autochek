@@ -4,7 +4,26 @@ import java.util.Arrays;
 
 
 public class UberShop {
-
+    public int[] leavePrice9(int[] prices){
+        if (prices.length == 0){
+            return  new int[0];
+        }
+        int counter = 0;
+        for (int price : prices) {
+            if (((price - 9) % 10) == 0 ){
+                counter++;
+            }
+        }
+        int [] res = new int[counter];
+        int index = 0;
+        for (int price: prices) {
+            if (((price - 9) % 10) == 0){
+                res[index] = price;
+                index++;
+            }
+        }
+        return res;
+    }
     public int[] removePrice(int[] prices) {
         return new int[0];
     }
@@ -82,7 +101,19 @@ public class UberShop {
     }
 
     //Test output
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+/*        String a = "a";
+        String b = "b";
+
+        String resConcat = a.concat(b);
+
+        String resJoin = String.join(a,b);
+
+        System.out.println("Concat = " + resConcat);
+        System.out.println("Join res = "  + resJoin);*/
+
+
         UberShop shop = new UberShop();
         //Should be 100 jup. 23.5 jup. 400 jup. - one price per line
 //        float[] prices = new float[]{100f, 23.5f, 400f};
@@ -101,8 +132,13 @@ public class UberShop {
 //        int[] prices = new int[]{100, 1500, 300, 50, 10, 10, 70};
 //        System.out.println(shop.getMinPriceCount(prices)); //Should be 2
 
-        int[] prices = new int[]{150, 100, 200};
+        /*int[] prices = new int[]{150, 100, 200};
         int toRemove = 100;
-        System.out.println(Arrays.toString(shop.removePrice(prices, toRemove)));
+        System.out.println(Arrays.toString(shop.removePrice(prices, toRemove)));*/
+
+        //Should be [1599, 399]
+        int[] prices = new int[] {399, 1599, 399, 50, 10, 10, 70};
+        System.out.println(Arrays.toString(shop.leavePrice9(prices)));
     }
+
 }
