@@ -17,7 +17,6 @@ public class ArlanHelper {
 
         return result;
     }
-
     //Test output
     public static void main(String[] args) {
         ArlanHelper helper = new ArlanHelper();
