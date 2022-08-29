@@ -1,11 +1,12 @@
 package main;
 
 public class ArlanHelper {
-    public String drawPattern(char[] pattern, int repeatCount){
+
+    public String drawPattern(char[] pattern, int repeatCount) {
         String result = "";
         int index = 0;
         while (repeatCount > 0) {
-            while (index <  pattern.length ){
+            while (index < pattern.length) {
                 result += pattern[index];
                 index++;
             }
@@ -14,6 +15,7 @@ public class ArlanHelper {
         }
         return result;
     }
+
     /* recommended solution
 
      public String drawLine(int length) {
@@ -92,7 +94,8 @@ public class ArlanHelper {
         System.out.println(helper.drawLine(5));
 
 
-        System.out.println(helper.drawPattern(new char[] {'J', 'a', 'v', 'a'}, 3));
+        System.out.println(helper.drawPattern(new char[]{'J', 'a', 'v', 'a'}, 3));
+
     }
 
 }
