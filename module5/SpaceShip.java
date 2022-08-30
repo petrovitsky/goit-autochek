@@ -1,4 +1,4 @@
-package main;
+package main.module5;
 
 public class SpaceShip {
     private String name;
