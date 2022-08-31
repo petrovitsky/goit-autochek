@@ -31,3 +31,19 @@ class JupiterStar extends Spaceport {
         return 500 + 2 * passengerCount;
     }
 }
+
+class  MercuryBeat extends Spaceport{
+
+    @Override
+    public int calculateTotalPrice(int passengerCount) {
+        return 15 * passengerCount;
+    }
+}
+
+class SunHeaven extends Spaceport{
+
+    @Override
+    public int calculateTotalPrice(int passengerCount) {
+        return 2000;
+    }
+}
