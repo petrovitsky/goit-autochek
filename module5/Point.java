@@ -1,5 +1,5 @@
 package main.module5;
-class PointTest {
+class Point {
     private  int x;
     private int y;
 
