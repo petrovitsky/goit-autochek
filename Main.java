@@ -1,88 +1,30 @@
 package main;
 
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        int[] arr = {2, 1, 3, 9, 7, 6, 4, 5};
+        bubbleSort(arr);
+        System.out.println(Arrays.toString(arr));
 
-
-//        Scanner scan = new Scanner(System.in);
-//
-//        String message = scan.nextLine();
-//
-        String str= "jasa";
-
-        MoonRobotVespenGasDetector test = new MoonRobotVespenGasDetector();
-        MarsValueConverter mars = new MarsValueConverter();
-
-        System.out.println(mars.changeMoneyAmount(100F, 40.50F));
-        System.out.println(mars.calculateMoneySum(50, 40));
-
-        System.out.println(test.isAcidOk(100, 50, 150));
-        System.out.println(test.isDensityOk(1500));
-        System.out.println(test.isDensityOk(3000));
-        System.out.println(test.isTemperatureOk(false));
-        System.out.println(test.isGroundOkForVespenGas(120, 75, 150, 5000, false));
     }
+
+    public static void bubbleSort(int[] arr) {
+        boolean isSorted = false;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    int tmp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = tmp;
+                    isSorted = false;
+                }
+            }
+        }
+    }
+
+
 }
-
-class MoonRobotVespenGasDetector {
-
-    int a;
-
-    public boolean isAcidOk(int acidValue, int minAcid, int maxAcid) {
-        return acidValue >= minAcid && acidValue <= maxAcid;
-    }
-
-    public boolean isDensityOk(int density) {
-        return (density >= 1000 && density <= 5000) || (density >= 10000 && density <= 15000);
-    }
-
-    public boolean isTemperatureOk(boolean cold) {
-        return !cold;
-    }
-
-    public boolean isGroundOkForVespenGas(int acidValue, int minAcid, int maxAcid, int density, boolean cold) {
-        return (isAcidOk(acidValue, minAcid, maxAcid) == true) && (isDensityOk(density)) && (isTemperatureOk(cold));
-    }
-}
-
-class MarsValueConverter {
-    public int changeMoneyAmount(float startAmount, float toRemove) {
-
-
-        return (int) (startAmount - toRemove);
-
-
-    }
-
-    public byte calculateMoneySum(int sum1, int sum2) {
-
-        return (byte) (sum1 + sum2);
-    }
-
-    public short halfOfMoney(double startMoney){
-
-        return (short) (startMoney/2);
-    }
-}
-
-class TestBoolean {
-    public static void main(String[] args) {
-        boolean result = grtFalse() & getTrue();
-        System.out.println(result);
-
-    }
-    public static boolean getTrue () {
-        System.out.println("Its working getTrue");
-        return true;
-    }
-
-    public static boolean grtFalse () {
-        System.out.println("Its working getFalse");
-
-        return false;
-    }
-}
-
