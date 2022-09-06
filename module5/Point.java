@@ -2,6 +2,8 @@ package main.module5;
 class Point {
     private  int x;
     private int y;
+    private int z;
+
 
     public int getX() {
         return x;
@@ -27,7 +29,16 @@ class Point {
         this.z = z;
     }
 
-    private int z;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Point)) return false;
+        Point that = (Point) obj ;
+        return this.x == that.x &&
+                this.y == that.y &&
+                this.z == that.z;
+    }
+
     public static void main(String[] args) {
         Point p1 = new Point();
         p1.setX(1);
@@ -39,6 +50,7 @@ class Point {
         p2.setY(1);
         p2.setZ(1);
 
-        System.out.println(p1.equals(p2)); //Will be false
+            System.out.println(p1.equals(p2)); //Will be false
     }
+
 }
