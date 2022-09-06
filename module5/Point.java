@@ -1,4 +1,7 @@
 package main.module5;
+
+import java.util.Objects;
+
 class Point {
     private  int x;
     private int y;
@@ -39,6 +42,11 @@ class Point {
                 this.z == that.z;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(x,y,z);
+    }
+
     public static void main(String[] args) {
         Point p1 = new Point();
         p1.setX(1);
@@ -51,6 +59,8 @@ class Point {
         p2.setZ(1);
 
             System.out.println(p1.equals(p2)); //Will be false
+        System.out.println("p1.hashCode() = " + p1.hashCode());
+        System.out.println("p2.hashCode() = " + p2.hashCode());
     }
 
 }
