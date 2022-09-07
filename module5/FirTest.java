@@ -1,5 +1,10 @@
 package main.module5;
+class FirNum{
 
+    public int calc(int number) {
+        return number;
+    }
+}
 class FirTest {
     public int test(FirNum firNum, int number) {
         return firNum.calc(number);
