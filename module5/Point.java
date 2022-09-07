@@ -36,6 +36,7 @@ class Point {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (!(obj instanceof Point)) return false;
+        if (this == null) return false;
         Point that = (Point) obj ;
         return this.x == that.x &&
                 this.y == that.y &&
@@ -61,6 +62,7 @@ class Point {
             System.out.println(p1.equals(p2)); //Will be false
         System.out.println("p1.hashCode() = " + p1.hashCode());
         System.out.println("p2.hashCode() = " + p2.hashCode());
+
     }
 
 }
