@@ -28,6 +28,6 @@ class FirTest {
         FirTest firTest = new FirTest();
 
         //Should be 6
-        System.out.println(firTest.test(firNum, 350));
+        System.out.println(firTest.test(firNum, 3));
     }
 }
