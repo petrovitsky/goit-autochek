@@ -2,8 +2,7 @@ package main.module5;
 
 public class Test {
     public static void main(String[] args) {
-        FirNum fac = new FirNumFactorial();
-        System.out.println("fac.calc(4) = " + fac.calc(5));
+        System.out.println("new FirNumBasis().calc(9) = " + new FirNumBasis().calc(9));
     }
 }
 
