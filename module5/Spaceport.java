@@ -15,25 +15,21 @@ public class Spaceport {
         commandPost.command();
     }
 }
-
 class GasStation {
     public void refuel() {
         System.out.println("Refuel done!");
     }
 }
-
 class ServiceTower {
     public void service() {
         System.out.println("Service done!");
     }
 }
-
 class CompressorStation {
     public void compress() {
         System.out.println("Compress done!");
     }
 }
-
 class  Radar {
     public void scan(){
         System.out.println("Scan done!");
@@ -44,7 +40,6 @@ class CommandPost {
         System.out.println("Fire!");
     }
 }
-
 class Launcher {
     public static void main(String[] args) {
         Spaceport spaceport = new Spaceport();
