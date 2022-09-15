@@ -1,7 +1,7 @@
 package main.module5;
 
 class LaunchCalculator {
-    public int calculateTotalPrice(Spaceport spaceport, int passengerCount) {
+    public int calculateTotalPrice(SpaceportOne spaceport, int passengerCount) {
         return spaceport.calculateTotalPrice(passengerCount);
     }
 
@@ -19,12 +19,12 @@ class LaunchCalculator {
     }
 }
 
-abstract class Spaceport {
+abstract class SpaceportOne {
     public abstract int calculateTotalPrice(int passengerCount);
 }
 
 
-class JupiterStar extends Spaceport {
+class JupiterStar extends SpaceportOne {
 
     @Override
     public int calculateTotalPrice(int passengerCount) {
@@ -32,7 +32,7 @@ class JupiterStar extends Spaceport {
     }
 }
 
-class  MercuryBeat extends Spaceport{
+class  MercuryBeat extends SpaceportOne {
 
     @Override
     public int calculateTotalPrice(int passengerCount) {
@@ -40,7 +40,7 @@ class  MercuryBeat extends Spaceport{
     }
 }
 
-class SunHeaven extends Spaceport{
+class SunHeaven extends SpaceportOne {
 
     @Override
     public int calculateTotalPrice(int passengerCount) {
