@@ -8,7 +8,9 @@ public class LevelTest {
 
         Level.Point[] points = {p1, p2, p3};
 
-        //Quarke level, name is Test, point count is 3
-        System.out.println(new Level("Test", points));
+        Level.LevelInfo info = new Level.LevelInfo("Quarke Intro", "Easy");
+
+        //Quarke level, name is Quarke Intro, difficulty is Easy, point count is 3
+        System.out.println(new Level(info, points));
     }
 }

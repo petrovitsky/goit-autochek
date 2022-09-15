@@ -1,21 +1,20 @@
 package main.module6.levels;
 
 public class Level {
-    private String name;
+    LevelInfo levelInfo;
     Point[] points;
 
-    Level(String name, Point[] points) {
-        this.name = name;
+    public Level(LevelInfo levelInfo, Point[] points) {
+        this.levelInfo = levelInfo;
         this.points = points;
-
     }
 
     @Override
     public String toString() {
-        return "Quarke level, name is " + name + ", point count is " + points.length;
+        return "Quarke level, name is " + levelInfo.name + ", difficulty is " + levelInfo.difficulty +  ", point count is " + points.length;
     }
 
-    static class Point{
+    static class Point {
         private int x;
         private int y;
 
@@ -30,6 +29,24 @@ public class Level {
 
         public int getY() {
             return y;
+        }
+    }
+
+    static class LevelInfo {
+       private String name;
+       private String difficulty;
+
+        public LevelInfo(String name, String difficulty) {
+            this.name = name;
+            this.difficulty = difficulty;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getDifficulty() {
+            return difficulty;
         }
     }
 }
