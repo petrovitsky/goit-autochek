@@ -11,7 +11,15 @@ public class Level {
 
     @Override
     public String toString() {
-        return "Quarke level, name is " + levelInfo.name + ", difficulty is " + levelInfo.difficulty +  ", point count is " + points.length;
+        return "Quarke level, name is " + levelInfo.name + ", difficulty is " + levelInfo.difficulty + ", point count is " + points.length;
+    }
+
+    public int calculateLevelHash() {
+        int result = 0;
+        for (Point p : points) {
+            result += p.x * p.y;
+        }
+        return result;
     }
 
     static class Point {
@@ -33,8 +41,8 @@ public class Level {
     }
 
     static class LevelInfo {
-       private String name;
-       private String difficulty;
+        private String name;
+        private String difficulty;
 
         public LevelInfo(String name, String difficulty) {
             this.name = name;
