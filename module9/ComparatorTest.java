@@ -1,15 +1,15 @@
 package main.module9;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 
 public class ComparatorTest {
     public static void main(String[] args) {
         List<Employee> list = new ArrayList<>();
-        list.add(new Employee("Eugene", "Petrov", 38));
-        list.add(new Employee("Aleks", "Kochkov", 34));
-        list.add(new Employee("Olga", "Ivaniva", 56));
+        list.add(new Employee("Eugene", "P", 38));
+        list.add(new Employee("Aleks", "K", 34));
+        list.add(new Employee("Olga", "A", 56));
         list.sort(new ComparatorEmployee());
         System.out.println(list);
 
@@ -17,7 +17,7 @@ public class ComparatorTest {
 }
 
 
-class Employee {
+class Employee implements Comparable <Employee> {
     private String firstName;
     private String lastName;
     private int age;
@@ -46,10 +46,16 @@ class Employee {
         this.lastName = lastName;
         this.age = age;
     }
+
+    @Override
+    public int compareTo(@NotNull Employee o) {
+
+
+        return this.lastName.compareTo(o.getLastName());
+    }
 }
 
-
-class GodComparator implements Comparator<Employee> {
+ class GodComparator implements Comparator<Employee> {
 
     @Override
     public int compare(Employee o1, Employee o2) {
@@ -57,10 +63,7 @@ class GodComparator implements Comparator<Employee> {
     }
 }
 
-class ComparatorEmployee extends GodComparator implements Comparator<Employee> {
+class ComparatorEmployee extends GodComparator {
 
-    @Override
-    public int compare(Employee o1, Employee o2) {
-        return o1.getAge() - o2.getAge();
-    }
+
 }

@@ -4,10 +4,23 @@ import java.util.Arrays;
 
 public class WordDeleter {
     public String remove(String phrase, String[] words){
-        StringBuilder sb = new StringBuilder(phrase);
-        sb.replace(sb.indexOf(words[0]),  sb.indexOf(words[0]) + words[0].length(), " ");
-
-        return sb.toString();
+       String [] split = phrase.split(" ");
+       int ocuruance = 0;
+        for (int i = 0; i < split.length; i++) {
+            for (int j = 0; j < words.length; j++) {
+                if (split[i].equals(words[j])){
+                    split[i] = " ";
+                    ocuruance ++;
+                }
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < split.length; i++) {
+            if (!split[i].equals(" ")){
+                sb.append(split[i]).append(" ");
+            }
+        }
+        return sb.toString().trim();
     }
 }
 
@@ -21,5 +34,7 @@ class WordDeleterTest {
 
         //This Sparta
         System.out.println(wordDeleter.remove("This is Sparta", new String[] {"is"}));
+        //
+        System.out.println(wordDeleter.remove("This is Sparta but that is my home ya", new String[] {"is"}));
     }
 }
