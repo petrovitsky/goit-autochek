@@ -1,10 +1,21 @@
 package main.module7;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MathDetector {
     public boolean isMath(String text){
-        text.split()
+        int counter = 0;
+        for (char c : text.toCharArray()) {
+            if(Character.isDigit(c)){
+                counter ++;
+            }
+        }
+        if (counter < 2) {
+            return false;
+        }
 
-        return text.contains("=") && (text.contains("+") || text.contains("-") || text.contains("*") || text.contains("/"));
+
+        return text.contains("=") && (text.contains("+") || text.contains("-") || text.contains("*") || text.contains("/")) ;
     }
 }
 
