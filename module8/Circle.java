@@ -1,9 +1,5 @@
 package main.module8;
 
-public class Circle extends Shape{
-    @Override
-    public String getName() {
+public class Circle extends AbstractShape {
 
-        return this.name;
-    }
 }

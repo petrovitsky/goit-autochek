@@ -1,11 +1,6 @@
 package main.module8;
 
-public class Triangle extends Shape{
+public class Triangle extends AbstractShape {
 
 
-    @Override
-    public String getName() {
-        return this.name;
-
-    }
 }

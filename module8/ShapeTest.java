@@ -4,18 +4,38 @@ public class ShapeTest {
 
     public static void main(String[] args) {
 
+    AbstractShape octagon = new Octagon();
+        System.out.println("octagon.getName() = " + octagon.getName());
+    }
+}
 
+interface Vector {
 
-        Printer printer = new Printer() {
-            @Override
-            public void printName(Shape s) {
-                System.out.println(s.name);
-            }
-        };
-        System.out.println(printer.getClass().getName());
+    void interMethod ();
+    @Override
+    String toString();
+}
 
+abstract class AbstarctVector implements Vector {
+
+}
+
+class ArrayVector extends AbstarctVector {
+
+    @Override
+    public void interMethod() {
 
     }
 }
 
+class ZeroVector extends AbstarctVector {
+    public static final ZeroVector INSTANCE = new ZeroVector();
 
+    private ZeroVector(){}
+
+    @Override
+    public void interMethod() {
+
+    }
+
+}
