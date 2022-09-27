@@ -1,4 +1,4 @@
-package main.module9;
+package main.module9.comparator;
 
 import org.jetbrains.annotations.NotNull;
 
