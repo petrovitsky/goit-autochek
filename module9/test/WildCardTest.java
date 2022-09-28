@@ -11,7 +11,7 @@ public class WildCardTest {
     }
 
     public <T,S,V> void fillListOfEntyties(S data) {
-        return new ArrayList<S>(10 , new V()) ;
+
     }
 
 
