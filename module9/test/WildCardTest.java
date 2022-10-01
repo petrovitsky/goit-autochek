@@ -10,20 +10,19 @@ public class WildCardTest {
         }
     }
 
-    public <T,S,V> void fillListOfEntyties(S data) {
-
+    public static List<? extends Transport> getListOfEntities(Transport tr) {
+        List result = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            result.add(new Transport());
+        }
+        return result;
     }
 
 
     public static void main(String[] args) {
-        List<Transport> transports = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            transports.add(new Transport());
-        }
 
-        for (Transport t : transports) {
-            System.out.println(t);
-        }
+        System.out.println(getListOfEntities(new Transport()));
+
 
     }
 }
@@ -42,17 +41,16 @@ class Transport extends FirstCar {
 
 
     public Transport() {
-        this.index = entityCounter;
-        entityCounter++;
+        this.index = entityCounter++;
     }
 
     public void drive() {
-        System.out.println("Transport is going");
+        System.out.println("Transport " + getIndex() + " is going");
     }
 
     @Override
     public String toString() {
-        return "Transport{" +
+        return "Transport {" +
                 "index=" + index +
                 '}';
     }
@@ -61,6 +59,6 @@ class Transport extends FirstCar {
 class Car extends Transport {
     @Override
     public void drive() {
-        System.out.println("Car is deiving");
+        System.out.println("Car " + getIndex() + "  is driving");
     }
 }

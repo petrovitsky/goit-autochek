@@ -1,6 +1,8 @@
 package main.module9.homework;
 
-public interface MyList <E> {
+import java.util.Iterator;
+
+public interface MyList <E> extends Iterable <E> {
     boolean add(E value);
     boolean remove(int index);
     void clear();
