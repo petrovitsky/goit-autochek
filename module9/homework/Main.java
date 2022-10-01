@@ -5,23 +5,33 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        MyList<Integer> arr = new MyArrayList<>();
-        arr.add(10);
-        arr.add(20);
-        try {
-            System.out.println(arr.get(1));
-        } catch (IndexOutOfBoundsException e){
-            System.err.println(e.getStackTrace());
+        MyList<Integer> arrayList = new MyArrayList<>(1);
+
+        arrayList.add(14);
+        arrayList.add(2);
+        arrayList.add(3);
+        arrayList.add(4);
+        for (Integer i : arrayList) {
+            System.out.println("i = " + i);
+        }
+        System.out.println("arrayList.size() = " + arrayList.size());
+        System.out.println("after removing");
+        arrayList.remove(0);
+        for (Integer i : arrayList) {
+            System.out.println("i = " + i);
+        }
+        System.out.println("arrayList.size() = " + arrayList.size());
+        arrayList.clear();
+        System.out.println("After clear");
+        for (Integer i : arrayList) {
+            System.out.println("i = " + i);
         }
 
-        System.out.println("arr.size() = " + arr.size());
+        arrayList.add(777);
 
+        System.out.println(arrayList);
 
-        List<Integer> test = new ArrayList<>();
-        test.add(11);
-        test.add(21);
-
-        System.out.println("test.get() = " + test.get(1));
-        System.out.println("test.size() = " + test.size());
+        arrayList.add(888);
+        System.out.println(arrayList);
     }
 }
