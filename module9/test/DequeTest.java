@@ -1,7 +1,6 @@
 package main.module9.test;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 
 public class DequeTest {
     public static void main(String[] args) {
@@ -13,6 +12,7 @@ public class DequeTest {
 
         System.out.println(deque);
 
-
+        System.out.println(deque.pollFirst());
+        System.out.println(deque);
     }
 }

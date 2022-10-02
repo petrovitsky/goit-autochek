@@ -6,14 +6,18 @@ import java.util.Iterator;
 public class MyArrayList<E> implements MyList<E> {
     private static final int DEFAULT_CAPACITY = 10;
     private int size;
-    private E[] data;
+    private E[] data = (E[]) new Object[DEFAULT_CAPACITY];
 
     public MyArrayList() {
-        data = (E[]) new Object[DEFAULT_CAPACITY];
+
     }
 
     public MyArrayList(int capacity) {
-        data = (E[]) new Object[capacity];
+        try {
+            data = (E[]) new Object[capacity];
+        } catch (ClassCastException e) {
+            e.getMessage();
+        }
     }
 
 
@@ -43,14 +47,15 @@ public class MyArrayList<E> implements MyList<E> {
 
     @Override
     public boolean remove(int index) {
-        remove(data , index);
+        remove(data, index);
         return true;
     }
 
     private void remove(Object[] data, int i) {
         final int newSize;
-        if ((newSize = size - 1) > i){
-            System.arraycopy(data, i + 1, data, i, newSize - i);}
+        if ((newSize = size - 1) > i) {
+            System.arraycopy(data, i + 1, data, i, newSize - i);
+        }
         data[size = newSize] = null;
     }
 
