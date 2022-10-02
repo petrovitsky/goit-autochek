@@ -17,7 +17,7 @@ public class MyArrayList<E> implements MyList<E> {
         try {
             data = (E[]) new Object[capacity];
         } catch (ClassCastException e) {
-            e.getMessage();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -25,9 +25,11 @@ public class MyArrayList<E> implements MyList<E> {
     private Object[] grow(int minCapacity) {
         int oldCapacity = data.length;
         if (oldCapacity > 0) {
-            return data = Arrays.copyOf(data, oldCapacity * 2);
+            data = Arrays.copyOf(data, oldCapacity * 2);
+            return data;
         } else {
-            return data = (E[]) new Object[Math.max(DEFAULT_CAPACITY, minCapacity)];
+            data = (E[]) new Object[Math.max(DEFAULT_CAPACITY, minCapacity)];
+            return data;
         }
     }
 
@@ -57,7 +59,8 @@ public class MyArrayList<E> implements MyList<E> {
         if ((newSize = size - 1) > i) {
             System.arraycopy(data, i + 1, data, i, newSize - i);
         }
-        data[size = newSize] = null;
+        size = newSize;
+        data[size] = null;
     }
 
     @Override
