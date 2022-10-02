@@ -14,38 +14,34 @@ public class MyArrayList<E> implements MyList<E> {
     private E[] data = (E[]) new Object[DEFAULT_CAPACITY];
 
     public MyArrayList() {
-
-
     }
 
     public MyArrayList(int capacity) {
         try {
             data = (E[]) new Object[capacity];
         } catch (ClassCastException e) {
-            logger.log(Level.INFO, "Constructor exception" );
+            logger.log(Level.INFO, "Constructor exception");
         }
 
     }
 
 
-    private Object[] grow(int minCapacity) {
+    private Object[] grow() {
         int oldCapacity = data.length;
         if (oldCapacity > 0) {
             data = Arrays.copyOf(data, oldCapacity * 2);
-            return data;
         } else {
-            data = (E[]) new Object[Math.max(DEFAULT_CAPACITY, minCapacity)];
-            return data;
+            data = (E[]) new Object[DEFAULT_CAPACITY];
         }
+        return data;
     }
 
     private void add(E element, Object[] data, int s) {
         if (s == data.length) {
-            data = grow(s + 1);
+            data = grow();
         }
         data[s] = element;
         size = s + 1;
-
     }
 
     @Override
@@ -61,8 +57,8 @@ public class MyArrayList<E> implements MyList<E> {
     }
 
     private void remove(Object[] data, int i) {
-        final int newSize;
-        if ((newSize = size - 1) > i) {
+        int newSize = size - 1;
+        if (newSize > i) {
             System.arraycopy(data, i + 1, data, i, newSize - i);
         }
         size = newSize;
@@ -96,16 +92,16 @@ public class MyArrayList<E> implements MyList<E> {
 
             @Override
             public boolean hasNext() {
-                return index < data.length /*&& data[index] != null*/
-                        ;
+                return index < data.length && data[index] != null;
             }
 
             @Override
             public E next() {
-                if(!hasNext()){
+                if (!hasNext()) {
                     throw new NoSuchElementException();
-                } else{
-                return data[index++];}
+                } else {
+                    return data[index++];
+                }
             }
         };
     }
