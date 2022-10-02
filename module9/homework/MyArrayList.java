@@ -3,13 +3,18 @@ package main.module9.homework;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class MyArrayList<E> implements MyList<E> {
+    private static final Logger logger = Logger.getAnonymousLogger();
     private static final int DEFAULT_CAPACITY = 10;
     private int size;
     private E[] data = (E[]) new Object[DEFAULT_CAPACITY];
 
     public MyArrayList() {
+
 
     }
 
@@ -17,8 +22,9 @@ public class MyArrayList<E> implements MyList<E> {
         try {
             data = (E[]) new Object[capacity];
         } catch (ClassCastException e) {
-            System.err.println(e.getMessage());
+            logger.log(Level.INFO, "Constructor exception" );
         }
+
     }
 
 
