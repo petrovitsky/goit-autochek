@@ -2,6 +2,7 @@ package main.module9.homework;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MyArrayList<E> implements MyList<E> {
     private static final int DEFAULT_CAPACITY = 10;
@@ -74,13 +75,13 @@ public class MyArrayList<E> implements MyList<E> {
 
     @Override
     public E get(int index) {
-        return (E) data[index];
+        return data[index];
     }
 
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
+        return new Iterator<>() {
 
             private int index;
 
@@ -92,7 +93,10 @@ public class MyArrayList<E> implements MyList<E> {
 
             @Override
             public E next() {
-                return (E) data[index++];
+                if(!hasNext()){
+                    throw new NoSuchElementException();
+                } else{
+                return data[index++];}
             }
         };
     }
