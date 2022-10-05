@@ -6,6 +6,16 @@ public class User {
     private String login;
     private  String mail;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", login='" + login + '\'' +
+                ", mail='" + mail + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }
@@ -61,16 +71,22 @@ public class User {
 
         public Builder login ( String s){
             this.login = s;
-
             return this;
         }
 
         public Builder mail ( String s) {
             this.mail = s;
-
             return this;
         }
 
+        public User build () {
+            User user = new User();
+            user.setName(name);
+            user.setLastName(lastName);
+            user.setMail(mail);
+            user.setLogin(login);
+            return user;
+        }
 
     }
 }
