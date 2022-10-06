@@ -1,40 +1,47 @@
 package main.module9.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GenericTest {
     public static void main(String[] args) {
-
+        List<Integer> list = new ArrayList<>();
 
     }
 
-    public static  <K ,V> void   summ ( Object<> ) {
-
-
-        Object obj = new Object();
-        Object ob = new Object(){};
+    public static <T extends A> T summ(T a, T b) {
+        return a;
     }
 }
-class A extends Number{
+
+class A<T> extends Number {
+    private T value;
+
+    public A(T value) {
+        this.value = value;
+    }
+
     @Override
     public int intValue() {
-        return 0;
+        return (int) value;
     }
 
     @Override
     public long longValue() {
-        return 0;
+        return (long) value;
     }
 
     @Override
     public float floatValue() {
-        return 0;
+        return (float) value;
     }
 
     @Override
     public double doubleValue() {
-        return 0;
+        return (double) value;
     }
 
-    public static void foo (){
-        System.out.println("\"Foo method\" = " + "Foo method");
+    public void foo() {
+        System.out.println("Foo method");
     }
 }
