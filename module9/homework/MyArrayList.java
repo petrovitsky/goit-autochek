@@ -18,12 +18,7 @@ public class MyArrayList<E> implements MyList<E> {
     }
 
     public MyArrayList(int capacity) {
-        try {
-            data = (E[]) new Object[capacity];
-        } catch (ClassCastException e) {
-            logger.log(Level.INFO, "Constructor exception");
-        }
-
+        data = (E[]) new Object[capacity];
     }
 
 
@@ -115,8 +110,9 @@ public class MyArrayList<E> implements MyList<E> {
     public String toString() {
         StringJoiner sj = new StringJoiner(", ", "[", "]");
         for (E element : data) {
-            if(!(element == null))
-            sj.add((String )element);
+            if (element != null) {
+                sj.add(element.toString());
+            }
         }
         return sj.toString();
     }

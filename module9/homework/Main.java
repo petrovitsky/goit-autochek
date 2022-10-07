@@ -1,23 +1,33 @@
 package main.module9.homework;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        MyList<String> list = new MyArrayList<>(12);
-        System.out.println("list.size() = " + list.size());
-        list.add("First");
-        list.add("Second");
-        list.add("Third");
-        System.out.println("list.get(3) = " + list.get(3));
-        System.out.println(list);
+        List <MyUser> list = new ArrayList<>();
+        list.add(new MyUser("Yeugen", 34));
+        list.add(new MyUser("Sergiy", 23));
+        System.out.println("list = " + list);
 
-        List<String> sList = new ArrayList<>();
-        sList.add("sws");
-        System.out.println("sList.get(2) = " + sList.get(2));
+
     }
 }
 
+class MyUser {
+    private  String name;
+    private int age;
+    MyUser(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "MyUser{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
 
