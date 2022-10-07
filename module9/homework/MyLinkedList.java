@@ -3,12 +3,17 @@ package main.module9.homework;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 
-public class MyLinkedList<E> implements MyList<E> {
+
+public class MyLinkedList<E> implements MyList {
     private int size;
     private Node<E> first;
     private Node<E> last;
+
+    public MyLinkedList() {
+        this.first = new Node<>(null, null, last);
+        this.last = new Node<>(first, null, null);
+    }
 
     private static class Node<E> {
         E item;
@@ -25,8 +30,18 @@ public class MyLinkedList<E> implements MyList<E> {
 
     @Override
     public boolean add(Object value) {
-        return false;
+        addLast((E) value);
+        return true;
     }
+
+    private void addLast(E value) {
+        Node<E> current = last;
+        current.item = value;
+        last = new Node<>(current, null, null);
+        current.next = last;
+        size++;
+    }
+
 
     @Override
     public boolean remove(int index) {
@@ -40,12 +55,16 @@ public class MyLinkedList<E> implements MyList<E> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        if (index >= 0 && index < size) {
+            throw new IllegalArgumentException("Incorrect index!!!");
+        } else {
+            return  first.item;
+        }
     }
 
     @NotNull

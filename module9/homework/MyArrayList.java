@@ -4,12 +4,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringJoiner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class MyArrayList<E> implements MyList<E> {
-    private static final Logger logger = Logger.getAnonymousLogger();
     private static final int DEFAULT_CAPACITY = 10;
     private int size;
     private E[] data = (E[]) new Object[DEFAULT_CAPACITY];
@@ -52,7 +49,7 @@ public class MyArrayList<E> implements MyList<E> {
         return true;
     }
 
-    private void remove(Object[] data, int i) {
+    private void remove(E[] data, int i) {
         int newSize = size - 1;
         if (newSize > i) {
             System.arraycopy(data, i + 1, data, i, newSize - i);
