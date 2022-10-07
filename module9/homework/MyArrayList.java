@@ -3,6 +3,7 @@ package main.module9.homework;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -112,9 +113,11 @@ public class MyArrayList<E> implements MyList<E> {
 
     @Override
     public String toString() {
-        return "MyArrayList{" +
-                "size=" + size +
-                ", data=" + Arrays.toString(data) +
-                '}';
+        StringJoiner sj = new StringJoiner(", ", "[", "]");
+        for (E element : data) {
+            if(!(element == null))
+            sj.add((String )element);
+        }
+        return sj.toString();
     }
 }

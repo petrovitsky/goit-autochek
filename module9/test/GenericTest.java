@@ -1,11 +1,10 @@
 package main.module9.test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class GenericTest {
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
 
     }
 

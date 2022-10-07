@@ -1,28 +1,23 @@
 package main.module9.homework;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-       ArrayList<String> list = new ArrayList<>();
-       list.add("Eugene");
-       list.add("Viktoriia");
-        System.out.println("list = " + list);
-        System.out.println("list.get(5) = " + list.get(5));
+        MyList<String> list = new MyArrayList<>(12);
+        System.out.println("list.size() = " + list.size());
+        list.add("First");
+        list.add("Second");
+        list.add("Third");
+        System.out.println("list.get(3) = " + list.get(3));
+        System.out.println(list);
+
+        List<String> sList = new ArrayList<>();
+        sList.add("sws");
+        System.out.println("sList.get(2) = " + sList.get(2));
     }
 }
 
-interface  A {
-    void Foo ();
-}
-abstract class B implements A{
 
-}
-class C extends B {
-    @Override
-    public void Foo() {
-
-    }
-}
