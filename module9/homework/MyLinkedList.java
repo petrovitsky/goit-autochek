@@ -5,15 +5,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 
 
-public class MyLinkedList<E> implements MyList {
+public class MyLinkedList<E> implements MyList<E> {
     private int size;
     private Node<E> first;
     private Node<E> last;
 
-   public MyLinkedList(){
-       last = new Node<>(null, null, null);
-       first = new Node<>(null, null, last);
-   }
+    public MyLinkedList() {
+        last = new Node<>(null, null, null);
+        first = new Node<>(null, null, last);
+    }
 
     private static class Node<E> {
         E item;
@@ -26,17 +26,6 @@ public class MyLinkedList<E> implements MyList {
             this.prev = prev;
         }
 
-        public E getItem() {
-            return item;
-        }
-
-        public Node<E> getNext() {
-            return next;
-        }
-
-        public Node<E> getPrev() {
-            return prev;
-        }
     }
 
     @Override
@@ -54,23 +43,45 @@ public class MyLinkedList<E> implements MyList {
     }
 
 
-     void addFirst(E element){
-       Node<E> current = first;
-       current.item = element;
-       first = new Node<>(null,null,current);
-       current.prev = first;
-       size++;
+    void addFirst(E element) {
+        Node<E> current = first;
+        current.item = element;
+        first = new Node<>(null, null, current);
+        current.prev = first;
+        size++;
     }
 
 
     @Override
     public boolean remove(int index) {
-        return false;
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Incorrect index!!!");
+        }
+        Node<E> toRemove = nodeOf(index);
+
+        if (index == 0) {
+            first.next = toRemove.next;
+            toRemove.next.prev = first;
+            size--;
+            return true;
+        }
+        if (index == size -1) {
+            toRemove.prev.next = last;
+            last.prev = toRemove.prev;
+            size--;
+            return true;
+        }
+
+        toRemove.prev.next = toRemove.next;
+        toRemove.next.prev = toRemove.prev;
+            size--;
+
+        return true;
     }
 
     @Override
     public void clear() {
-
+    //TO-DO
     }
 
     @Override
@@ -83,11 +94,11 @@ public class MyLinkedList<E> implements MyList {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Incorrect index!!!");
         } else {
-            return  nodeOf(index).item;
+            return nodeOf(index).item;
         }
     }
 
-    private Node<E> nodeOf(int index){
+    private Node<E> nodeOf(int index) {
         Node<E> res = first;
         for (int i = 0; i <= index; i++) {
             res = res.next;
@@ -111,8 +122,27 @@ public class MyLinkedList<E> implements MyList {
 
     @NotNull
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private int counter = 0;
+
+            @Override
+            public boolean hasNext() {
+                return counter < size;
+            }
+
+            @Override
+            public E next() {
+                return get(counter++);
+            }
+        };
+    }
+
+    public void printList() {
+        for (Object m : this) {
+            System.out.println( m);
+        }
+        System.out.println("------ ---- ----- ---");
     }
 
 
