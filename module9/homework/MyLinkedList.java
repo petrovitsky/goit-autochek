@@ -53,7 +53,7 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
         return true;
     }
 
-    private void addLast(E value) {
+    public void addLast(E value) {
         Node<E> current = last;
         current.item = value;
         last = new Node<>(current, null, null);
@@ -62,7 +62,7 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
     }
 
 
-    private void addFirst(E element) {
+    public void addFirst(E element) {
         Node<E> current = first;
         current.item = element;
         first = new Node<>(null, null, current);
