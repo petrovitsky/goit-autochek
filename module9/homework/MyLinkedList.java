@@ -81,7 +81,9 @@ public class MyLinkedList<E> implements MyList<E> {
 
     @Override
     public void clear() {
-    //TO-DO
+        first.next = last;
+        last.prev = first;
+        size = 0;
     }
 
     @Override
@@ -139,6 +141,10 @@ public class MyLinkedList<E> implements MyList<E> {
     }
 
     public void printList() {
+        if (size == 0){
+            System.out.println("The collection is empty.");
+            return;
+        }
         for (Object m : this) {
             System.out.println( m);
         }
