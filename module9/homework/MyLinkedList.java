@@ -2,17 +2,36 @@ package main.module9.homework;
 
 import org.jetbrains.annotations.NotNull;
 
+import javax.print.attribute.standard.PresentationDirection;
 import java.util.Iterator;
 
 
-public class MyLinkedList<E> implements MyList<E> {
+public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
     private int size;
-    private Node<E> first;
-    private Node<E> last;
+    private Node<E> first = new Node<>(null, null, null);
+    ;
+    private Node<E> last = new Node<>(null, null, null);
+    ;
 
     public MyLinkedList() {
-        last = new Node<>(null, null, null);
-        first = new Node<>(null, null, last);
+        last.prev = first;
+        first.next = last;
+    }
+
+    @Override
+    public E poll() {
+        if (size == 0) {
+            return null;
+        } else {
+            final E result = nodeOf(0).item;
+            remove(0);
+            return result;
+        }
+    }
+
+    @Override
+    public E peek() {
+        return nodeOf(0).item;
     }
 
     private static class Node<E> {
@@ -43,7 +62,7 @@ public class MyLinkedList<E> implements MyList<E> {
     }
 
 
-    void addFirst(E element) {
+    private void addFirst(E element) {
         Node<E> current = first;
         current.item = element;
         first = new Node<>(null, null, current);
@@ -62,19 +81,22 @@ public class MyLinkedList<E> implements MyList<E> {
         if (index == 0) {
             first.next = toRemove.next;
             toRemove.next.prev = first;
+            toRemove.next = toRemove.prev = null;
             size--;
             return true;
         }
-        if (index == size -1) {
+        if (index == size - 1) {
             toRemove.prev.next = last;
             last.prev = toRemove.prev;
+            toRemove.next = toRemove.prev = null;
             size--;
             return true;
         }
 
         toRemove.prev.next = toRemove.next;
         toRemove.next.prev = toRemove.prev;
-            size--;
+        toRemove.next = toRemove.prev = null;
+        size--;
 
         return true;
     }
@@ -141,12 +163,12 @@ public class MyLinkedList<E> implements MyList<E> {
     }
 
     public void printList() {
-        if (size == 0){
+        if (size == 0) {
             System.out.println("The collection is empty.");
             return;
         }
         for (Object m : this) {
-            System.out.println( m);
+            System.out.println(m);
         }
         System.out.println("------ ---- ----- ---");
     }
