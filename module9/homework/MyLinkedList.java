@@ -11,7 +11,7 @@ public class MyLinkedList<E> implements MyList {
     private Node<E> last;
 
    public MyLinkedList(){
-       last = new Node<>(first , null, null);
+       last = new Node<>(null, null, null);
        first = new Node<>(null, null, last);
    }
 
@@ -80,7 +80,7 @@ public class MyLinkedList<E> implements MyList {
 
     @Override
     public E get(int index) {
-        if (index < 0 && index < size) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Incorrect index!!!");
         } else {
             return  nodeOf(index).item;
@@ -93,7 +93,7 @@ public class MyLinkedList<E> implements MyList {
             res = res.next;
         }
         return res;
-
+//
 //        if (index < (size >> 1)){
 //            Node<E> res = first;
 //            for (int i = 0 ; i < index; i ++){
