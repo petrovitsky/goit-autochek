@@ -10,10 +10,10 @@ public class MyLinkedList<E> implements MyList {
     private Node<E> first;
     private Node<E> last;
 
-    public MyLinkedList() {
-        this.first = new Node<>(null, null, last);
-        this.last = new Node<>(first, null, null);
-    }
+   public MyLinkedList(){
+       last = new Node<>(first , null, null);
+       first = new Node<>(null, null, last);
+   }
 
     private static class Node<E> {
         E item;
@@ -26,6 +26,17 @@ public class MyLinkedList<E> implements MyList {
             this.prev = prev;
         }
 
+        public E getItem() {
+            return item;
+        }
+
+        public Node<E> getNext() {
+            return next;
+        }
+
+        public Node<E> getPrev() {
+            return prev;
+        }
     }
 
     @Override
@@ -40,6 +51,15 @@ public class MyLinkedList<E> implements MyList {
         last = new Node<>(current, null, null);
         current.next = last;
         size++;
+    }
+
+
+     void addFirst(E element){
+       Node<E> current = first;
+       current.item = element;
+       first = new Node<>(null,null,current);
+       current.prev = first;
+       size++;
     }
 
 
@@ -60,11 +80,33 @@ public class MyLinkedList<E> implements MyList {
 
     @Override
     public E get(int index) {
-        if (index >= 0 && index < size) {
+        if (index < 0 && index < size) {
             throw new IllegalArgumentException("Incorrect index!!!");
         } else {
-            return  first.item;
+            return  nodeOf(index).item;
         }
+    }
+
+    private Node<E> nodeOf(int index){
+        Node<E> res = first;
+        for (int i = 0; i <= index; i++) {
+            res = res.next;
+        }
+        return res;
+
+//        if (index < (size >> 1)){
+//            Node<E> res = first;
+//            for (int i = 0 ; i < index; i ++){
+//                res = res.next;
+//            }
+//            return res;
+//        } else {
+//            Node<E> res = last;
+//            for (int i = 0; i > index ; i--) {
+//                res = res.prev;
+//            }
+//            return res;
+//        }
     }
 
     @NotNull

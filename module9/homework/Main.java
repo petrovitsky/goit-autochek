@@ -1,14 +1,18 @@
 package main.module9.homework;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        int size = 5;
-        int index = 2;
-        System.out.println("size = " + size + " index = " + index + " result  of (size >> 1) =  " + size);
+        MyLinkedList<String> list = new MyLinkedList<>();
+        list.add("data1");
+        list.add("data2");
+        list.add("data3");
+        list.addFirst("data4");
+        list.addFirst("data5");
+        list.addFirst("data6");
+        for (int i = 0; i < 6; i++) {
+            System.out.println(list.get(i));
+        }
 
     }
 
