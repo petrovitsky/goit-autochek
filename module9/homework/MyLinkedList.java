@@ -2,16 +2,14 @@ package main.module9.homework;
 
 import org.jetbrains.annotations.NotNull;
 
-import javax.print.attribute.standard.PresentationDirection;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
     private int size;
     private Node<E> first = new Node<>(null, null, null);
-    ;
     private Node<E> last = new Node<>(null, null, null);
-    ;
 
     public MyLinkedList() {
         last.prev = first;
@@ -48,8 +46,8 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
     }
 
     @Override
-    public boolean add(Object value) {
-        addLast((E) value);
+    public boolean add(E value) {
+        addLast(value);
         return true;
     }
 
@@ -59,6 +57,22 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
         last = new Node<>(current, null, null);
         current.next = last;
         size++;
+    }
+
+    @Override
+    public E pop() {
+        if (size == 0) {
+            throw  new NoSuchElementException();
+        } else {
+            final E result = nodeOf(0).item;
+            remove(0);
+            return result;
+        }
+    }
+
+    @Override
+    public void push(E e) {
+        addFirst(e);
     }
 
 
