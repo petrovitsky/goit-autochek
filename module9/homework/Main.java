@@ -1,49 +1,51 @@
 package main.module9.homework;
 
-
-import java.util.LinkedList;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        MyLinkedList<Integer> list = new MyLinkedList<>();
-//        list.add(new MyUser("zero",0));
-//        list.add(new MyUser("first", 1));
-//        list.add(new MyUser("second", 2));
-//        list.add(new MyUser("third", 3));
-//        list.add(new MyUser("fourth", 4));
-        list.add(0);
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
+        testInharitance( new A(){
+            @Override
+            public void printer() {
+                System.out.println("Printer from the anonimmus class");
+            }
+                        }
+        );
+
+        Set<String> names = new HashSet<>();
+        names.add("John");
+        names.add("Bill");
+
+        Object[] array = names.toArray();
+        System.out.println(array);
+
+        int hashCode = names.hashCode();
 
 
-        list.printList();
-
-        list.clear();
-
-        list.printList();
-
-        list.add(31);
-        list.add(221);
-        list.add(365);
-        list.add(9874);
-
-        list.printList();
-        System.out.println(list.size());
 
     }
 
-//    private static <E> void printList(MyList list) {
-//        for (Object m : list) {
-//            System.out.println( m);
-//        }
-//        System.out.println("------ ---- ----- ---");
-//    }
+    public static void testInharitance(A element){
 
-
+    }
 }
+
+interface A {
+    void printer();
+}
+
+class AImpl implements A {
+
+    @Override
+    public void printer() {
+        System.out.println("Printer from the interface");
+    }
+
+    public void foo (){
+        throw new UnsupportedOperationException();
+    }
+}
+
 
 
 class MyUser {
