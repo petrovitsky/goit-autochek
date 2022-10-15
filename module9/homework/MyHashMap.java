@@ -1,6 +1,5 @@
 package main.module9.homework;
 
-import java.util.HashMap;
 import java.util.Objects;
 
 public class MyHashMap<K, V> implements MyMap<K, V> {
@@ -9,18 +8,53 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     static final int MAXIMUM_CAPACITY = Integer.MAX_VALUE / 2;
 
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
-
-    private MyHashMap.Node<K, V>[] table = new Node<>[DEFAULT_INITIAL_CAPACITY];
-
+    private MyHashMap.Node<K, V>[] table = new Node[DEFAULT_INITIAL_CAPACITY];
 
     int threshold;
     int size;
 
     @Override
     public V put(K key, V value) {
+
+        int index = hash(key);
         Node<K, V> newNode = new Node<>(hash(key), key, value, null);
 
-        return null;
+        // Adding without collision
+        if (table[index] == null) {
+            return putFirst(newNode, index);
+        }
+
+        // Adding with collision or update
+        Node<K, V> current = table[index];
+        //When the Node is not one
+        while (current.next != null) {
+            if (comparing(newNode, current)) {
+                return value;
+            }
+            current = current.next;
+        }
+        //When the Node is one
+        if (comparing(newNode, current)) {
+            return value;
+        } else {
+            current.next = newNode;
+            size++;
+        }
+        return value;
+    }
+
+    private boolean comparing(Node<K, V> newNode, Node<K, V> current) {
+        if (current.key.equals(newNode.key)) {
+            current.value = newNode.value;
+            return true;
+        }
+        return false;
+    }
+
+    private V putFirst(Node<K, V> newNode, int hash) {
+        table[hash] = newNode;
+        size++;
+        return newNode.value;
     }
 
     @Override
@@ -30,12 +64,12 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public void clear() {
-
+    //TOdo
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
@@ -92,7 +126,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     }
 
     final int hash(Object key) {
-        int h;
-        return (key == null) ? 0 : (h = key.hashCode() % table.length);
+        return (key == null) ? 0 : Math.abs(key.hashCode() % table.length);
     }
 }
