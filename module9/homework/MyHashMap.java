@@ -3,18 +3,21 @@ package main.module9.homework;
 import java.util.Objects;
 
 public class MyHashMap<K, V> implements MyMap<K, V> {
-    static final int DEFAULT_INITIAL_CAPACITY = 16;
-
-    static final int MAXIMUM_CAPACITY = Integer.MAX_VALUE / 2;
+    static final int DEFAULT_INITIAL_CAPACITY = 3;
 
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
     private MyHashMap.Node<K, V>[] table = new Node[DEFAULT_INITIAL_CAPACITY];
 
-    int threshold;
+    int threshold = (int) (table.length * DEFAULT_LOAD_FACTOR);
     int size;
 
     @Override
     public V put(K key, V value) {
+        if (size + 1 >= threshold) {
+            grow();
+            put(key, value);
+            return value;
+        }
 
         int index = hash(key);
         Node<K, V> newNode = new Node<>(hash(key), key, value, null);
@@ -43,6 +46,24 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         return value;
     }
 
+    private void grow() {
+        Node<K, V>[] old = table;
+        table = new Node[old.length * 2];
+        size = 0;
+
+        for (int i = 0; i < old.length; i++) {
+            if (old[i] == null) {
+                continue;
+            }
+            while (old[i].next != null) {
+                put(old[i].key, old[i].value);
+                old[i] = old[i].next;
+            }
+            put(old[i].key, old[i].value);
+        }
+        threshold = (int) (table.length * DEFAULT_LOAD_FACTOR);
+    }
+
     private boolean comparing(Node<K, V> newNode, Node<K, V> current) {
         if (current.key.equals(newNode.key)) {
             current.value = newNode.value;
@@ -64,7 +85,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public void clear() {
-    //TOdo
+        //TOdo
     }
 
     @Override
