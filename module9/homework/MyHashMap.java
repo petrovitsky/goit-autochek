@@ -79,7 +79,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public V remove(Object key) {
-
         Node<K, V> toRemove;
         Node<K, V> prev;
         K keyToDel = (K) key;
@@ -142,6 +141,25 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public V get(Object key) {
+        if (size == 0) {
+            return null;
+        }
+        Node<K, V> toGet;
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] == null) {
+                continue;
+            }
+            toGet = table[i];
+            while (table[i].next != null){
+                if (toGet.key.equals(key)){
+                    return toGet.value;
+                }
+                toGet = toGet.next;
+            }
+            if(toGet.key.equals(key)){
+                return toGet.value;
+            }
+        }
         return null;
     }
 
