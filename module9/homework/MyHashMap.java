@@ -10,14 +10,12 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     int size;
 
     @Override
-
     public V put(K key, V value) {
         if (size + 1 >= threshold) {
             grow();
             put(key, value);
             return value;
         }
-
         int index = hash(key);
         Node<K, V> newNode = new Node<>(hash(key), key, value, null);
 
@@ -25,7 +23,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         if (table[index] == null) {
             return putFirst(newNode, index);
         }
-
         // Adding with collision or update
         Node<K, V> current = table[index];
         //When the Node is not one
@@ -44,7 +41,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
         return value;
     }
-
     private void grow() {
         Node<K, V>[] old = table;
         table = new Node[old.length * 2];
@@ -62,7 +58,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
         threshold = (int) (table.length * DEFAULT_LOAD_FACTOR);
     }
-
     private boolean comparing(Node<K, V> newNode, Node<K, V> current) {
         if (current.key.equals(newNode.key)) {
             current.value = newNode.value;
@@ -70,42 +65,39 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
         return false;
     }
-
     private V putFirst(Node<K, V> newNode, int hash) {
         table[hash] = newNode;
         size++;
         return newNode.value;
     }
-
     @Override
     public V remove(Object key) {
         Node<K, V> toRemove;
         Node<K, V> prev;
         K keyToDel = (K) key;
         V valToDel = null;
-
-        for (int i = 0; i < table.length; i++) {
+        int index = hash(key);
             // When the bucket is null.
-            if (table[i] == null) {
-                continue;
+            if (table[index] == null) {
+                return  null;
             }
             // When the bucket has a one node, and it's a desired value.
-            if (table[i].key.equals(keyToDel) && table[i].next == null) {
-                valToDel = table[i].value;
-                table[i] = null;
+            if (table[index].key.equals(keyToDel) && table[index].next == null) {
+                valToDel = table[index].value;
+                table[index] = null;
                 size--;
                 return valToDel;
             }
             // When the bucket has more than one node and first is a desired value.
-            if (table[i].key.equals(keyToDel)) {
-                valToDel = table[i].value;
-                table[i] = table[i].next;
+            if (table[index].key.equals(keyToDel)) {
+                valToDel = table[index].value;
+                table[index] = table[index].next;
                 size--;
                 return valToDel;
             }
             // Pointers for moving through the bucket
-            toRemove = table[i];
-            prev = table[i];
+            toRemove = table[index];
+            prev = table[index];
             // Iteration the bucket except last node
             while (toRemove.next != null) {
                 if (toRemove.key.equals(keyToDel)) {
@@ -124,11 +116,9 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                 size--;
                 return valToDel;
             }
-        }
         // When there is no matching
         return null;
     }
-
     @Override
     public void clear() {
         if ( table != null && size > 0) {
@@ -137,23 +127,21 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                 table[i] = null;
         }
     }
-
     @Override
     public int size() {
         return size;
     }
-
     @Override
     public V get(Object key) {
         if (size == 0) {
             return null;
         }
+        int index = hash(key);
         Node<K, V> toGet;
-        for (int i = 0; i < table.length; i++) {
-            if (table[i] == null) {
-                continue;
+            if (table[index] == null) {
+                return null;
             }
-            toGet = table[i];
+            toGet = table[index];
             while (toGet.next != null){
                 if (toGet.key.equals(key)){
                     return toGet.value;
@@ -163,7 +151,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             if(toGet.key.equals(key)){
                 return toGet.value;
             }
-        }
         return null;
     }
 
@@ -172,14 +159,12 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         final K key;
         V value;
         MyHashMap.Node<K, V> next;
-
         public Node(int hash, K key, V value, Node<K, V> next) {
             this.hash = hash;
             this.key = key;
             this.value = value;
             this.next = next;
         }
-
         @Override
         public K getKey() {
             return key;
@@ -196,7 +181,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             this.value = value;
             return oldValue;
         }
-
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -204,17 +188,14 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             Node<?, ?> node = (Node<?, ?>) o;
             return key.equals(node.key) && value.equals(node.value);
         }
-
         @Override
         public int hashCode() {
             return Objects.hash(key, value);
         }
     }
-
     public boolean isEmpty() {
         return size == 0;
     }
-
     final int hash(Object key) {
         return (key == null) ? 0 : Math.abs(key.hashCode() % table.length);
     }
