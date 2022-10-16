@@ -4,14 +4,13 @@ import java.util.Objects;
 
 public class MyHashMap<K, V> implements MyMap<K, V> {
     static final int DEFAULT_INITIAL_CAPACITY = 3;
-
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
     private MyHashMap.Node<K, V>[] table = new Node[DEFAULT_INITIAL_CAPACITY];
-
     int threshold = (int) (table.length * DEFAULT_LOAD_FACTOR);
     int size;
 
     @Override
+
     public V put(K key, V value) {
         if (size + 1 >= threshold) {
             grow();
@@ -80,6 +79,51 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public V remove(Object key) {
+
+        Node<K, V> toRemove = new Node<>(0, null, null, null);
+        Node<K, V> prev = new Node<>(0, null, null, null);
+        K keyToDel = (K) key;
+        int depth;
+        V valToDel = null;
+
+        for (int i = 0; i < table.length; i++) {
+
+            if (table[i] == null) {
+                continue;
+            }
+
+            if (table[i].key.equals(keyToDel) && table[i].next == null) {
+                valToDel = table[i].value;
+                table[i] = null;
+                size--;
+                return valToDel;
+            }
+
+            toRemove = table[i];
+            prev = table[i];
+
+            while (toRemove.next != null) {
+                if (toRemove.key.equals(keyToDel)) {
+                    valToDel = toRemove.value;
+                    prev.next = toRemove.next;
+                    size--;
+                    return valToDel;
+                }
+                prev = toRemove;
+                toRemove = toRemove.next;
+
+            }
+
+            if (toRemove.key.equals(keyToDel)) {
+                valToDel = toRemove.value;
+                prev.next = null;
+                size--;
+                return valToDel;
+            }
+
+        }
+
+
         return null;
     }
 
