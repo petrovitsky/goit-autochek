@@ -150,7 +150,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                 continue;
             }
             toGet = table[i];
-            while (table[i].next != null){
+            while (toGet.next != null){
                 if (toGet.key.equals(key)){
                     return toGet.value;
                 }
