@@ -131,7 +131,11 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public void clear() {
-        //TOdo
+        if ( table != null && size > 0) {
+            size = 0;
+            for (int i = 0; i < table.length; ++i)
+                table[i] = null;
+        }
     }
 
     @Override
