@@ -80,28 +80,34 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     @Override
     public V remove(Object key) {
 
-        Node<K, V> toRemove = new Node<>(0, null, null, null);
-        Node<K, V> prev = new Node<>(0, null, null, null);
+        Node<K, V> toRemove;
+        Node<K, V> prev;
         K keyToDel = (K) key;
-        int depth;
         V valToDel = null;
 
         for (int i = 0; i < table.length; i++) {
-
+            // When the bucket is null.
             if (table[i] == null) {
                 continue;
             }
-
+            // When the bucket has a one node, and it's a desired value.
             if (table[i].key.equals(keyToDel) && table[i].next == null) {
                 valToDel = table[i].value;
                 table[i] = null;
                 size--;
                 return valToDel;
             }
-
+            // When the bucket has more than one node and first is a desired value.
+            if (table[i].key.equals(keyToDel)) {
+                valToDel = table[i].value;
+                table[i] = table[i].next;
+                size--;
+                return valToDel;
+            }
+            // Pointers for moving through the bucket
             toRemove = table[i];
             prev = table[i];
-
+            // Iteration the bucket except last node
             while (toRemove.next != null) {
                 if (toRemove.key.equals(keyToDel)) {
                     valToDel = toRemove.value;
@@ -111,19 +117,16 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                 }
                 prev = toRemove;
                 toRemove = toRemove.next;
-
             }
-
+            // Processing the last node
             if (toRemove.key.equals(keyToDel)) {
                 valToDel = toRemove.value;
                 prev.next = null;
                 size--;
                 return valToDel;
             }
-
         }
-
-
+        // When there is no matching
         return null;
     }
 
