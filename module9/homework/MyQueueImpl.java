@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 
 public class MyQueueImpl<E> implements MyQueue<E> {
-    private MyQueue<E> helper = new MyLinkedList<>();
+    private MyLinkedList<E> helper = new MyLinkedList<>();
 
     @Override
     public boolean add(E value) {

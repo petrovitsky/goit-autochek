@@ -43,7 +43,7 @@ public class MyStack <E> implements MyDeque<E> {
 
     @Override
     public void push(E e) {
-        helper.push(e);
+        addLast(e);
     }
 
     @Override

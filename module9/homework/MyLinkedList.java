@@ -29,7 +29,7 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
 
     @Override
     public E peek() {
-        return nodeOf(0).item;
+        return nodeOf(size -1).item;
     }
 
     private static class Node<E> {
@@ -64,8 +64,8 @@ public class MyLinkedList<E> implements MyList<E>, MyDeque<E> {
         if (size == 0) {
             throw  new NoSuchElementException();
         } else {
-            final E result = nodeOf(0).item;
-            remove(0);
+            final E result = nodeOf(size - 1).item;
+            remove(size - 1);
             return result;
         }
     }
