@@ -3,7 +3,7 @@ package main.module9.homework;
 import java.util.Objects;
 
 public class MyHashMap<K, V> implements MyMap<K, V> {
-    static final int DEFAULT_INITIAL_CAPACITY = 3;
+    static final int DEFAULT_INITIAL_CAPACITY = 16;
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
     private MyHashMap.Node<K, V>[] table = new Node[DEFAULT_INITIAL_CAPACITY];
     int threshold = (int) (table.length * DEFAULT_LOAD_FACTOR);
