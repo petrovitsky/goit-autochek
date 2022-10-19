@@ -12,7 +12,6 @@ public class WordCount {
     public static void frequencyCount(String path) {
         Map<String, Integer> resultMap = new HashMap<>();
         List<Map.Entry<String, Integer>> list = new LinkedList<>();
-        Collections.sort(list, ((o1, o2) -> o2.getValue() - o1.getValue()));
 
         try (Scanner scanner = new Scanner(new FileInputStream(path))) {
             while (scanner.hasNext()) {
@@ -28,6 +27,8 @@ public class WordCount {
         }
 
         list.addAll(resultMap.entrySet());
+        Collections.sort(list, ((o1, o2) -> o2.getValue() - o1.getValue()));
+
 
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getKey() + "\s" + list.get(i).getValue());
