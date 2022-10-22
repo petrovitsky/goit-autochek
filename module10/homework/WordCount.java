@@ -29,7 +29,6 @@ public class WordCount {
         list.addAll(resultMap.entrySet());
         Collections.sort(list, ((o1, o2) -> o2.getValue() - o1.getValue()));
 
-
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getKey() + "\s" + list.get(i).getValue());
         }
